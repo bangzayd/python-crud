@@ -1,4 +1,4 @@
-cd master
+cd python-crud
 
 py -m venv venv
 
