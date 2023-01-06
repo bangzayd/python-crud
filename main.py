@@ -20,7 +20,7 @@ def add_user():
 			#do not save password as a plain text
 			_hashed_password = generate_password_hash(_password)
 			# save edits
-			sql = "INSERT INTO tbl_user(user_name, user_email, user_password) VALUES(%s, %s, %s)"
+			sql = "INSERT INTO a(a1, a9, user_password) VALUES(%s, %s, %s)"
 			data = (_name, _email, _hashed_password,)
 			conn = mysql.connect()
 			cursor = conn.cursor()
@@ -41,7 +41,7 @@ def users():
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		cursor.execute("SELECT * FROM tbl_user")
+		cursor.execute("SELECT * FROM a")
 		rows = cursor.fetchall()
 		table = Results(rows)
 		table.border = True
@@ -57,7 +57,7 @@ def edit_view(id):
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		cursor.execute("SELECT * FROM tbl_user WHERE user_id=%s", id)
+		cursor.execute("SELECT * FROM a WHERE a0=%s", id)
 		row = cursor.fetchone()
 		if row:
 			return render_template('edit.html', row=row)
@@ -81,7 +81,7 @@ def update_user():
 			#do not save password as a plain text
 			_hashed_password = generate_password_hash(_password)
 			# save edits
-			sql = "UPDATE tbl_user SET user_name=%s, user_email=%s, user_password=%s WHERE user_id=%s"
+			sql = "UPDATE a SET a1=%s, a9=%s, user_password=%s WHERE a0=%s"
 			data = (_name, _email, _hashed_password, _id,)
 			conn = mysql.connect()
 			cursor = conn.cursor()
@@ -102,7 +102,7 @@ def delete_user(id):
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor()
-		cursor.execute("DELETE FROM tbl_user WHERE user_id=%s", (id,))
+		cursor.execute("DELETE FROM a WHERE a0=%s", (id,))
 		conn.commit()
 		flash('User deleted successfully!')
 		return redirect('/')
