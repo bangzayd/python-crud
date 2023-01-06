@@ -20,7 +20,7 @@ def add_user():
 			#do not save password as a plain text
 			_hashed_password = generate_password_hash(_password)
 			# save edits
-			sql = "INSERT INTO a(a1, a9, user_password) VALUES(%s, %s, %s)"
+			sql = "INSERT INTO a(a1, a9, a2) VALUES(%s, %s, %s)"
 			data = (_name, _email, _hashed_password,)
 			conn = mysql.connect()
 			cursor = conn.cursor()
@@ -81,7 +81,7 @@ def update_user():
 			#do not save password as a plain text
 			_hashed_password = generate_password_hash(_password)
 			# save edits
-			sql = "UPDATE a SET a1=%s, a9=%s, user_password=%s WHERE a0=%s"
+			sql = "UPDATE a SET a1=%s, a9=%s, a2=%s WHERE a0=%s"
 			data = (_name, _email, _hashed_password, _id,)
 			conn = mysql.connect()
 			cursor = conn.cursor()
